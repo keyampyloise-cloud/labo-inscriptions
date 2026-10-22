@@ -1,0 +1,34 @@
+package cm.laboacademy.inscriptions;
+
+public class FraisInscription {
+
+    public int calculer(String niveau, boolean boursier) {
+        int fraisBase;
+
+        if (niveau == null) {
+            throw new IllegalArgumentException("Niveau invalide");
+        }
+
+        // Règles métier : L1, L2, L3 = 50 000 | M1, M2 = 75 000
+        switch (niveau) {
+            case "L1":
+            case "L2":
+            case "L3":
+                fraisBase = 50000;
+                break;
+            case "M1":
+            case "M2":
+                fraisBase = 75000;
+                break;
+            default:
+                throw new IllegalArgumentException("Niveau inconnu : " + niveau);
+        }
+
+        // L'étudiant boursier paie la moitié
+        if (boursier) {
+            return fraisBase / 2;
+        }
+
+        return fraisBase;
+    }
+}
